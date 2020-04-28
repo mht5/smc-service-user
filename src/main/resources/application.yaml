@@ -1,0 +1,13 @@
+server:
+  port: 1020
+
+spring:
+  application:
+    name: user-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:1000/eureka
+    healthcheck:
+      enabled: true
