@@ -1,12 +1,10 @@
 package com.smc.controller;
 
 import com.smc.domain.User;
+import com.smc.pojo.LoginResponse;
 import com.smc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,19 +14,34 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/list-all", method = RequestMethod.GET)
-    public List<User> findAll() {
-        return userService.findAll();
+    @PostMapping("/register")
+    public int register(@RequestBody User user) throws Exception {
+        return userService.register(user);
     }
 
-    @RequestMapping(value = "/find-by-id", method = RequestMethod.GET)
+    @PostMapping("/register-confirm")
+    public boolean confirmRegistration(@RequestBody User user) throws Exception {
+        return userService.confirmRegistration(user);
+    }
+
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody User user) throws Exception {
+        return userService.login(user);
+    }
+
+    @PostMapping("/update")
+    public boolean updateUser(@RequestBody User user) throws Exception {
+        return userService.updateUser(user);
+    }
+
+    @GetMapping("/find-by-id")
     public User findUserById(@RequestParam int id) {
         return userService.findUserById(id);
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello() {
-        return "Hello, World!";
+    @GetMapping("/list-all")
+    public List<User> findAll() {
+        return userService.findAll();
     }
 
 }
