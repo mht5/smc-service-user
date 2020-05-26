@@ -119,9 +119,18 @@ public class UserServiceImpl implements UserService {
         if (u == null) {
             throw new Exception("The user \"" + user.getEmail() + "\" doesn't exist.");
         }
-        u.setUsername(user.getUsername());
-        u.setMobileNumber(user.getMobileNumber());
-        u.setPassword(user.getPassword());
+        String username = user.getUsername();
+        String mobileNumber = user.getMobileNumber();
+        String password = user.getPassword();
+        if (username != null && username.length() > 0) {
+            u.setUsername(user.getUsername());
+        }
+        if (mobileNumber != null && mobileNumber.length() > 0) {
+            u.setMobileNumber(user.getMobileNumber());
+        }
+        if (password != null && password.length() > 0) {
+            u.setPassword(user.getPassword());
+        }
         userRepo.save(u);
         return true;
     }

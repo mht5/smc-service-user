@@ -34,4 +34,4 @@ eureka:
       enabled: true
 
 smc:
-  registration-confirm-url: https://localhost:4200/register/
+  registration-confirm-url: https://localhost:4200/register-confirm/
